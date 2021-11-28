@@ -13,34 +13,34 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private KeyCode left;
     [SerializeField] private KeyCode right;
     
-    private Rigidbody rigidbody;
+    private Rigidbody _rigidbody;
     
-    private Vector3 savePos;
-    private Quaternion saveRot;
+    private Vector3 _savePos;
+    private Quaternion _saveRot;
     
-    private bool isMoving;
+    private bool _isMoving;
     
-    private int score;
+    private int _score;
     
     public event UnityAction OnFell;
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        savePos = transform.position;
-        saveRot = transform.rotation;
+        _rigidbody = GetComponent<Rigidbody>();
+        _savePos = transform.position;
+        _saveRot = transform.rotation;
     }
     
     void FixedUpdate()
     {
-        if (isMoving == false) 
+        if (_isMoving == false) 
             return;
 
         if (Input.GetKey(up))
-            rigidbody.AddForce(transform.up * speed, ForceMode.Impulse);
+            _rigidbody.AddForce(transform.up * speed, ForceMode.Impulse);
 
         if (Input.GetKey(down))
-            rigidbody.AddForce(-transform.up * speed, ForceMode.Impulse);
+            _rigidbody.AddForce(-transform.up * speed, ForceMode.Impulse);
 
         if (Input.GetKey(left))
             transform.Rotate(-10, 0, 0, Space.Self);
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (!other.TryGetComponent(out BoardBounds bounds))
             return;
         
-        score++;
+        _score++;
         OnFell?.Invoke();
     }
     
@@ -63,27 +63,27 @@ public class PlayerController : MonoBehaviour
         if (!collision.gameObject.TryGetComponent(out Board board))
             return;
         
-        isMoving = true;
+        _isMoving = true;
     }
 
-    public int GetScore() => score;
+    public int GetScore() => _score;
     public string GetName() => name;
 
     public void ResetPlayer()
     {
-        score = 0;
+        _score = 0;
         
         ResetPos();
     }
     
     public void ResetPos()
     {
-        rigidbody.velocity = new Vector3();
-        rigidbody.angularVelocity = new Vector3();
+        _rigidbody.velocity = new Vector3();
+        _rigidbody.angularVelocity = new Vector3();
         
-        transform.position = savePos;
-        transform.rotation = saveRot;
+        transform.position = _savePos;
+        transform.rotation = _saveRot;
         
-        isMoving = false;
+        _isMoving = false;
     }
 }

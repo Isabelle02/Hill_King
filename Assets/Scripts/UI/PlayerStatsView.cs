@@ -17,11 +17,6 @@ public class PlayerStatsView : MonoBehaviour
     
     public void UpdateScoreView(int score)
     {
-        this.Score.text = score.ToString();
-    }
-
-    public void ResetView()
-    {
-        Score.text = "0";
+        Score.text = score.ToString();
     }
 }

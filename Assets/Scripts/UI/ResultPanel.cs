@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Serialization;
 using Frame.UI;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -54,6 +48,5 @@ public class ResultPanel : MonoBehaviour
     private void ExitGame()
     {
         OnExit?.Invoke();
-        //Application.Quit();
     }
 }

@@ -3,39 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RocketMover : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    Rigidbody _rigidbody;
-    Vector3 savePos;
-    Quaternion saveRot;
-    bool move;
-    private int _exitCount = 0;
-    public int ExitCount
-    {
-        get => _exitCount;
-        set
-        {
-            _exitCount = value;
-            OnExitCountChanged?.Invoke();
-        }
-    }
+    [SerializeField] private string name;
     [SerializeField] private float speed;
+    
     [SerializeField] private KeyCode up;
     [SerializeField] private KeyCode down;
     [SerializeField] private KeyCode left;
     [SerializeField] private KeyCode right;
-
-    public event UnityAction OnExitCountChanged; 
+    
+    private Rigidbody _rigidbody;
+    
+    private Vector3 _savePos;
+    private Quaternion _saveRot;
+    
+    private bool _isMoving;
+    
+    private int _score;
+    
+    public event UnityAction OnFell;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        savePos = transform.position;
-        saveRot = transform.rotation;
+        _savePos = transform.position;
+        _saveRot = transform.rotation;
     }
+    
     void FixedUpdate()
     {
-        if (move == false) return;
+        if (_isMoving == false) 
+            return;
 
         if (Input.GetKey(up))
             _rigidbody.AddForce(transform.up * speed, ForceMode.Impulse);
@@ -49,26 +48,42 @@ public class RocketMover : MonoBehaviour
         if (Input.GetKey(right))
             transform.Rotate(10, 0, 0, Space.Self);
     }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "GameObject")
-        {
-            ResetPos();
-            ExitCount++;
-        }
+        if (!other.TryGetComponent(out BoardBounds bounds))
+            return;
+        
+        _score++;
+        OnFell?.Invoke();
     }
+    
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Board")
-            move = true;
+        if (!collision.gameObject.TryGetComponent(out Board board))
+            return;
+        
+        _isMoving = true;
     }
+
+    public int GetScore() => _score;
+    public string GetName() => name;
+
+    public void ResetPlayer()
+    {
+        _score = 0;
+        
+        ResetPos();
+    }
+    
     public void ResetPos()
     {
         _rigidbody.velocity = new Vector3();
         _rigidbody.angularVelocity = new Vector3();
-        transform.position = savePos;
-        transform.rotation = saveRot;
-        move = false;
+        
+        transform.position = _savePos;
+        transform.rotation = _saveRot;
+        
+        _isMoving = false;
     }
-
 }

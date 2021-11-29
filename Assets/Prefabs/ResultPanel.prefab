@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6694497622689753218}
   - component: {fileID: 9096455890095727194}
   - component: {fileID: 4412644261636159758}
-  - component: {fileID: 3460349856037616948}
+  - component: {fileID: 5200004737102599395}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3460349856037616948
+--- !u!114 &5200004737102599395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 23111880992117408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: b43f6ce173c2dee4faabbbe52b5bc04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -120,19 +120,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4412644261636159758}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -9004786453848454116}
-        m_TargetAssemblyTypeName: ResultManager, Assembly-CSharp
-        m_MethodName: ExitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &625119547874675310
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +134,7 @@ GameObject:
   - component: {fileID: 1426494349154519281}
   - component: {fileID: -9004786453848454116}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ResultPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,7 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01ef9ab99dfe6743a600390a58faf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textResult: {fileID: 7553735371168349809}
+  restartButton: {fileID: 3922132239797670460}
+  exitButton: {fileID: 5200004737102599395}
+  resultText: {fileID: 7553735371168349809}
 --- !u!1 &1442961179054812337
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +305,7 @@ GameObject:
   - component: {fileID: 5671616807827339198}
   - component: {fileID: 7684636869803294003}
   - component: {fileID: 5162196141788086855}
-  - component: {fileID: 2074637939493321145}
+  - component: {fileID: 3922132239797670460}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -381,7 +371,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2074637939493321145
+--- !u!114 &3922132239797670460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,7 +380,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3293669649672656262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: b43f6ce173c2dee4faabbbe52b5bc04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -424,19 +414,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5162196141788086855}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -9004786453848454116}
-        m_TargetAssemblyTypeName: ResultManager, Assembly-CSharp
-        m_MethodName: RestartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5990193561799071585
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +427,7 @@ GameObject:
   - component: {fileID: 6746569197334053562}
   - component: {fileID: 7553735371168349809}
   m_Layer: 5
-  m_Name: TextResult
+  m_Name: ResultText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
